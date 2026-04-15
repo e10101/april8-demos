@@ -1,0 +1,19 @@
+version: "1"
+
+deployments:
+  # ── sklearn ─────────────────────────────────────────────────────────────────
+  # RandomForestClassifier for fraud detection.
+  # Model files: models/anomaly-detector/model.joblib
+  anomaly-detector:
+    model: ./models/anomaly-detector/
+    framework: sklearn
+    tier: staging
+    mlflow_model: anomaly-detector # also register in MLflow for lineage
+
+  # # ── xgboost ─────────────────────────────────────────────────────────────────
+  # # XGBClassifier for customer churn prediction.
+  # # Model files: models/churn-predictor/model.bst
+  # churn-predictor:
+  #   model: ./models/churn-predictor/
+  #   framework: xgboost
+  #   tier: dev # scale to zero when idle
